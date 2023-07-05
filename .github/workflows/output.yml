@@ -1,0 +1,11 @@
+name: Output Informations
+on: workflow_dispatch
+
+jobs:
+    print-out:
+        runs-on: ubuntu-20.04
+        steps:
+            -
+                name: Return information
+                # use the provided toJson function to print the github context as a json
+                run: echo "${{toJson(github)}}"
