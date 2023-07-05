@@ -7,5 +7,8 @@ jobs:
         runs-on: ubuntu-22.04
         steps:
             -
-                name: testing
+                name: install dependencies
+                run: yarn install
+            -
+                name: run test
                 run: yarn test
