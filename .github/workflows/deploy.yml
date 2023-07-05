@@ -1,0 +1,47 @@
+name: Deploy Project
+
+# on: workflow_dispatch
+on: push
+
+jobs:
+    test:
+        runs-on: ubuntu-22.04
+        steps:
+            -   # get the code from the repo
+                name: Get code
+                # use the github actions checkout with the version 3 to fetch the repo and download it to the runner
+                uses: actions/checkout@v3
+                # configure the action ( passing up parameter )
+                # with:
+                #     ...
+            -   # install node dependencies
+                name: Install Node
+                uses: actions/setup-node@v3
+                with:
+                    node-version: 18
+            -
+                name: Install Dependencies
+                run: yarn install
+            -
+                name: Run tests
+                run: yarn test
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            -
+                name: Get the code
+                uses: actions/checkout@v3
+            -
+                name: Install Node
+                uses: actions/setup-node@v3
+                with:
+                    node-version: 18
+            -
+                name: Install dependencies
+                run: yarn install
+            -
+                name: Build project
+                run: yarn build
+            -
+                name: Deploy
+                run: echo "Deploying...."
