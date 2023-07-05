@@ -26,6 +26,7 @@ jobs:
                 name: Run tests
                 run: yarn test
     deploy:
+        needs: test # would the test job to finish before starting || [test, job2] for more jobs
         runs-on: ubuntu-latest
         steps:
             -
